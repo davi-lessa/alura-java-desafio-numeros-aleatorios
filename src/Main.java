@@ -14,7 +14,7 @@ public class Main {
         // Número máximo de tentatives
         int maxTries = 5;
         // Número aleatório máximo (0, n)
-        int maxRandomValue = 2;
+        int maxRandomValue = 100;
         int score = 0;
 
         // Controle de nova tentativa
@@ -27,7 +27,7 @@ public class Main {
             int currentTry = 1;
             int randomNumber = new Random().nextInt(maxRandomValue);
 
-            System.out.printf(score > 0 ? "Pontuação: " + score : "%n");
+            System.out.printf(score > 0 ? "Pontuação: " + score + "%n" : "%n");
             System.out.printf("Um número aleatório de 0 a %d foi gerado. Você tem %d chances para acertá-lo.%n", maxRandomValue, maxTries);
 
             while (currentTry <= maxTries) {
@@ -53,9 +53,11 @@ public class Main {
 
                     printRemain(currentTry, maxTries);
                 }
+
                 currentTry++;
             }
 
+            // Após o break ou máximo de tentativas
             if (isRight) {
                 System.out.println("Parabéns, você acertou!");
             } else {
@@ -64,13 +66,15 @@ public class Main {
 
             System.out.println("Tentar novamente? (Y/n)");
 
+            // Aguarda resposta sobre interesse ou não por nova tentativa
             while (!tryAgainRes.equalsIgnoreCase("Y") && !tryAgainRes.equalsIgnoreCase("N")) {
                 Scanner tryAgainScanner = new Scanner(System.in);
                 tryAgainRes = tryAgainScanner.next();
             }
             
         } while (tryAgainRes.equalsIgnoreCase("Y"));
-        System.out.printf("Sua pontuação final foi: %d.", score);
 
+        // Ações após finalizar o jogo
+        System.out.printf("Sua pontuação final foi: %d.", score);
     }
 }
