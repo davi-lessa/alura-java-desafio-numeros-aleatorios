@@ -7,9 +7,9 @@ public class Main {
         int remain = maxTries - currentTry;
         // Sufixo "s" para plural
         String pluralSuffix = remain > 1 ? "s" : "";
-        System.out.printf("%d chance%s restantes. Boa sorte!%n", remain, pluralSuffix);
+        System.out.printf("%d chance%s restante%s. Boa sorte!%n", remain, pluralSuffix, pluralSuffix);
     }
-    
+
     public static void main(String[] args) {
         // Número máximo de tentatives
         int maxTries = 5;
@@ -18,7 +18,7 @@ public class Main {
         int score = 0;
 
         // Controle de nova tentativa
-        String tryAgainRes = "Y";
+        String tryAgainRes = "S";
 
         // Loop da tentativa atual
         do {
@@ -28,7 +28,7 @@ public class Main {
             int randomNumber = new Random().nextInt(maxRandomValue);
 
             System.out.printf(score > 0 ? "Pontuação: " + score + "%n" : "%n");
-            System.out.printf("Um número aleatório de 0 a %d foi gerado. Você tem %d chances para acertá-lo.%n", maxRandomValue, maxTries);
+            System.out.printf("Um número aleatório de 0 a %d foi gerado e você tem apenas %d chances para acertá-lo.%nValendo!%n", maxRandomValue, maxTries);
 
             while (currentTry <= maxTries) {
                 Scanner scanner = new Scanner(System.in);
@@ -64,17 +64,17 @@ public class Main {
                 System.out.println("Não foi dessa vez. Boa sorte na próxima!");
             }
 
-            System.out.println("Tentar novamente? (Y/n)");
+            System.out.println("Continuar? (S/n)");
 
             // Aguarda resposta sobre interesse ou não por nova tentativa
-            while (!tryAgainRes.equalsIgnoreCase("Y") && !tryAgainRes.equalsIgnoreCase("N")) {
+            while (!tryAgainRes.equalsIgnoreCase("S") && !tryAgainRes.equalsIgnoreCase("N")) {
                 Scanner tryAgainScanner = new Scanner(System.in);
                 tryAgainRes = tryAgainScanner.next();
             }
-            
-        } while (tryAgainRes.equalsIgnoreCase("Y"));
+
+        } while (tryAgainRes.equalsIgnoreCase("S"));
 
         // Ações após finalizar o jogo
-        System.out.printf("Sua pontuação final foi: %d.", score);
+        System.out.printf("Sua pontuação final foi: %d. Até a próxima!", score);
     }
 }
